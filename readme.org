@@ -1,10 +1,10 @@
-* [[http://spacemacs.org][Spacemacs]] configuration file.
+* [[http://spacemacs.org][Spacemacs]] configuration.
 ** install spacemacs
 #+BEGIN_SRC sh
 git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
 #+END_SRC
 ** install my configuration 
 #+BEGIN_SRC sh
-git clone https://github.com/tavlarides/spacemacs ~/.emacs.d/private
-ln -s ~/.emacs.d/private/dot_spacemacs ~/.spacemacs
+git clone https://github.com/tavlarides/dotfiles ~/dotfiles
+ln -s ~/dotfiles/spacemacs ~/.spacemacs
 #+END_SRC

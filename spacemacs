@@ -27,8 +27,7 @@ values."
      better-defaults
      c-c++
      emacs-lisp
-     (git :variables
-          git-gutter-use-fringe t)
+     git
      html
      (javascript :variables
                  js-indent-level 2
@@ -50,7 +49,8 @@ values."
      syntax-checking
      themes-megapack
      unimpaired
-     version-control
+     (version-control :variables
+                      version-control-diff-tool 'diff-hl)
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
