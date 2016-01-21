@@ -26,7 +26,9 @@ values."
      auto-completion
      better-defaults
      c-c++
+     dash
      emacs-lisp
+     (eyebrowse :variables eyebrowse-display-help t)
      git
      html
      (javascript :variables
@@ -35,16 +37,19 @@ values."
                  )
      markdown
      org
-     ;; (shell :variables
-     ;;        shell-default-height 30
-     ;;        shell-default-position 'bottom)
      osx
      (php :variables
           indent-tabs-mode nil
           tab-width 2
           c-basic-offset 2)
-     ranger
      semantic
+     (shell :variables
+            shell-default-height 30
+            ;; shell-default-shell 'multi-term
+            shell-default-term-shell "/usr/local/bin/fish"
+            shell-default-position 'bottom)
+
+     shell-scripts
      spell-checking
      syntax-checking
      themes-megapack
@@ -56,9 +61,11 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages then consider to create a layer, you can also put the
    ;; configuration in `dotspacemacs/config'.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(
+                                      ;; hideshowvis
+                                      )
    ;; A list of packages and/or extensions that will not be install and loaded.
-   dotspacemacs-excluded-packages '()
+   dotspacemacs-excluded-packages '(vi-tilde-fringe)
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
    ;; are declared in a layer which is not a member of
    ;; the list `dotspacemacs-configuration-layers'. (default t)
@@ -94,12 +101,8 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(
-                         spacemacs-light
+   dotspacemacs-themes '(spacemacs-light
                          spacemacs-dark)
-                         ;; subatomic
-                         ;; flatui
-                         ;; material)
    ;; If non nil the cursor color matches the state color.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
@@ -193,8 +196,7 @@ values."
    ;; If non nil advises quit functions to keep server open when quitting.
    ;; (default nil)
 
-   ;; έλα το καλό το λάθος 
-   dotspacemacs-persistent-server nil
+   dotspacemacs-persistent-server t
    ;; List of search tool executable names. Spacemacs uses the first installed
    ;; tool of the list. Supported tools are `ag', `pt', `ack' and `grep'.
    ;; (default '("ag" "pt" "ack" "grep"))
@@ -204,6 +206,7 @@ values."
    ;; Not used for now. (default nil)
    dotspacemacs-default-package-repository nil
    ))
+
 (defun dotspacemacs/user-init ()
   "Initialization function for user code.
 It is called immediately after `dotspacemacs/init'.  You are free to put any
@@ -230,15 +233,19 @@ user code."
 layers configuration. You are free to put any user code."
   (setq
    ispell-dictionary "en"
+   insert-directory-program (executable-find "gls")
    powerline-default-separator 'box
    scroll-margin 1
    smooth-scroll-margin 1
+   vc-follow-symlinks t
    whitespace-display-mappings '(
                                  (space-mark   ?\     [?·])
                                  (newline-mark ?\n    [?⏎ ?\n])
                                  (tab-mark     ?\t    [?→ ?\t])
                                  )
    whitespace-style (quote (face trailing spaces tabs newline space-mark tab-mark newline-mark)))
+  (server-start)
+  ;; (hideshowvis-enable)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
